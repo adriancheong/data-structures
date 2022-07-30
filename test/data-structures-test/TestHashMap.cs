@@ -42,6 +42,22 @@ namespace data_structures
         }
 
         [Fact]
+        public void PutFourItemsAndGetThemAll()
+        {
+            // Given
+            HashMap<string, int> hm = new HashMap<string, int>();
+            hm.put("one", 1);
+            hm.put("two", 2);
+            hm.put("three", 3);
+            hm.put("four", 4);
+
+            Assert.Equal(1, hm.get("one"));
+            Assert.Equal(2, hm.get("two"));
+            Assert.Equal(3, hm.get("three"));
+            Assert.Equal(4, hm.get("four"));
+        }
+
+        [Fact]
         public void PutFiveItemsAndGetThemAll()
         {
             // Given
@@ -58,7 +74,5 @@ namespace data_structures
             Assert.Equal(4, hm.get("four"));
             Assert.Equal(5, hm.get("five"));
         }
-
-
     }
 }

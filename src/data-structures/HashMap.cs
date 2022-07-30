@@ -20,17 +20,26 @@ namespace data_structures
             entryCount++;
         }
 
+        public V get(K key)
+        {
+            int hashCode = key.GetHashCode() & 0x7fffffff % entries.Length;
+            return entries[hashCode];
+        }
+
+        private int getStringHash(string s)
+        {
+            int hash = 7;
+            for (int i = 0; i < s.Length; i++) {
+                hash = hash*31 + s[i];
+            }
+            return hash;
+        }
+
         private void resize()
         {
             V[] newEntries = new V[entries.Length * 2];
             Array.Copy(entries, newEntries, entries.Length);
             entries = newEntries;
-        }
-
-        public V get(K key)
-        {
-            int hashCode = key.GetHashCode() & 0x7fffffff % entries.Length;
-            return entries[hashCode];
         }
 
         public int size()
