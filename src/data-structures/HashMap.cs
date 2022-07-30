@@ -40,6 +40,7 @@ namespace data_structures
             V[] newEntries = new V[entries.Length * 2];
             Array.Copy(entries, newEntries, entries.Length);
             entries = newEntries;
+            //bug is prob here? When copy, need to rehash all the items?
         }
 
         public int size()
