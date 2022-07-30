@@ -5,7 +5,20 @@ namespace data_structures
 {
     public class HashMap<K,V>
     {
-        V[] entries = new V[4];
+        class Entry{
+            private K key;
+            private V value;
+            public Entry(K key, V value)
+            {
+                this.key = key;
+                this.value = value;
+            }
+            public K Key { get; set; }
+
+            public V Value { get; set; }
+        }
+
+        Entry[] entries = new Entry[4];
         int entryCount = 0;
         public HashMap()
         {
@@ -15,15 +28,21 @@ namespace data_structures
         {
             if (entryCount >= entries.Length / 2)
                 resize();
+
+            insert(key, value);
+        }
+
+        private void insert(K key, V value)
+        {
             int hashCode = key.GetHashCode() & 0x7fffffff % entries.Length;
-            entries[hashCode] = value;
+            entries[hashCode] = new Entry(key, value);
             entryCount++;
         }
 
         public V get(K key)
         {
             int hashCode = key.GetHashCode() & 0x7fffffff % entries.Length;
-            return entries[hashCode];
+            return entries[hashCode].Value;
         }
 
         private int getStringHash(string s)
@@ -37,10 +56,13 @@ namespace data_structures
 
         private void resize()
         {
-            V[] newEntries = new V[entries.Length * 2];
-            Array.Copy(entries, newEntries, entries.Length);
-            entries = newEntries;
-            //bug is prob here? When copy, need to rehash all the items?
+            Entry[] oldEntries = entries;
+            entries = new Entry[entries.Length * 2];
+            for (int i = 0; i < oldEntries.Length; i++)
+            {
+                if (oldEntries[i] != null)
+                    insert(oldEntries[i].Key, oldEntries[i].Value);
+            }
         }
 
         public int size()
