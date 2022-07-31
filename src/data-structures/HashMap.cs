@@ -34,26 +34,28 @@ namespace data_structures
         {
             int hashCode = getHashCode(key);
             if (entries[hashCode] == null)
+            {
                 entries[hashCode] = new Entry(key, value);
+                entryCount++;
+            }
             else
             {
                 //Check for PUT update
-                // for (Entry e = entries[hashCode]; e != null; e = e.Next)
-                // {
-                //     if (key.Equals(e.Value))
-                //     {
-                //         entries[hashCode].Value = value;
-                //         return;
-                //     }
-                // }
+                for (Entry e = entries[hashCode]; e != null; e = e.Next)
+                {
+                    if (key.Equals(e.Key))
+                    {
+                        entries[hashCode].Value = value;
+                        return;
+                    }
+                }
 
                 //If no update means no match in object, add it as new item in bucket hash collision
                 var next = entries[hashCode];
                 entries[hashCode] = new Entry(key, value);
                 entries[hashCode].Next = next;
+                entryCount++;
             }
-
-            entryCount++;
         }
 
         private int getHashCode(K key)

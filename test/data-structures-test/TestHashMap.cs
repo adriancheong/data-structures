@@ -103,5 +103,41 @@ namespace data_structures
 
             Assert.Equal(5, hm.length());
         }
+
+        [Fact]
+        public void UpdateHashMapWithSameKeyShouldWork()
+        {
+            // Given
+            HashMap<string, int> hm = new HashMap<string, int>();
+            hm.put("one", 1);
+            hm.put("one", 2);
+
+            Assert.Equal(2, hm.get("one"));
+        }
+
+        [Fact]
+        public void UpdateHashMapWithSameKeyFiveTimesShouldWork()
+        {
+            // Given
+            HashMap<string, int> hm = new HashMap<string, int>();
+            hm.put("one", 1);
+            hm.put("one", 2);
+            hm.put("one", 3);
+            hm.put("one", 4);
+            hm.put("one", 5);
+
+            Assert.Equal(5, hm.get("one"));
+        }
+
+        [Fact]
+        public void UpdateHashMapWithSameKeyCountShouldRemainSame()
+        {
+            // Given
+            HashMap<string, int> hm = new HashMap<string, int>();
+            hm.put("one", 1);
+            hm.put("one", 2);
+
+            Assert.Equal(1, hm.length());
+        }
     }
 }
