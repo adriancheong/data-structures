@@ -67,7 +67,7 @@ namespace data_structures
         {
             for (Node i = firstItem; i != null; i = i.Next)
             {
-                if (item.Equals(firstItem))
+                if (item.Equals(i))
                     return true;
             }
             return false;
