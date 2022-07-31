@@ -6,7 +6,7 @@ namespace data_structures
 {
     public class LinkedList<T> : ICollection<T>
     {
-        Node<T> firstItem;
+        Node firstItem;
 
         public int Count
         {
@@ -18,23 +18,23 @@ namespace data_structures
 
         public bool IsReadOnly => throw new NotImplementedException();
 
-        class Node<T>
+        class Node
         {
             public Node(T item)
             {
                 this.Item = item;
             }
             public T Item { get; set; }
-            public Node<T> Next { get; set; }
+            public Node Next { get; set; }
         }
 
         public void Add(T item)
         {
             if (firstItem == null)
-                firstItem = new Node<T>(item);
+                firstItem = new Node(item);
             else
             {
-                var newNode = new Node<T>(item);
+                var newNode = new Node(item);
                 newNode.Next = firstItem;
                 firstItem = newNode;
             }
@@ -45,7 +45,7 @@ namespace data_structures
             int count = 0;
             var iter = firstItem;
             
-            for (Node<T> i = firstItem; i != null; i = i.Next)
+            for (Node i = firstItem; i != null; i = i.Next)
                 count++;
 
             //Another way to achieve the same count as the above for educational purposes.    
