@@ -164,5 +164,25 @@ namespace data_structures
             Assert.True(ll.Contains("five"));
 
         }
+
+        [Fact]
+        public void TestForEachWorks()
+        {
+            int actual = 0;
+            int expected = 5;
+            LinkedList<string> ll = new LinkedList<string>();
+            ll.Add("one");
+            ll.Add("two");
+            ll.Add("three");
+            ll.Add("four");
+            ll.Add("five");
+
+            foreach(string s in ll)
+            {
+                actual++;
+            }
+
+            Assert.Equal(expected, actual);
+        }
     }
 }

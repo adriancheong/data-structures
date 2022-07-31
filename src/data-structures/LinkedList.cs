@@ -7,7 +7,12 @@ namespace data_structures
     public class LinkedList<T> : ICollection<T>
     {
         Node firstItem;
+        MyEnumerator enumerator;
 
+        public LinkedList()
+        {
+            enumerator = new MyEnumerator(firstItem);            
+        }
         public int Count
         {
             get
@@ -28,10 +33,44 @@ namespace data_structures
             public Node Next { get; set; }
         }
 
+        class MyEnumerator : IEnumerator<T>
+        {
+            public MyEnumerator(Node currentNode)
+            {
+                this.CurrentNode = currentNode;
+            }
+            public T Current { get; set; }
+            public Node CurrentNode { get; set; }
+
+            object IEnumerator.Current => throw new NotImplementedException();
+
+            public void Dispose()
+            {
+            }
+
+            public bool MoveNext()
+            {
+                if (CurrentNode.Next != null)
+                {
+                    CurrentNode = CurrentNode.Next;
+                    return true;
+                }
+                return false;
+            }
+
+            public void Reset()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public void Add(T item)
         {
             if (firstItem == null)
+            {
                 firstItem = new Node(item);
+                enumerator = new MyEnumerator(firstItem);
+            }
             else
             {
                 var newNode = new Node(item);
@@ -104,7 +143,7 @@ namespace data_structures
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return enumerator;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
