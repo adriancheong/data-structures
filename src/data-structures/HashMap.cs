@@ -32,7 +32,7 @@ namespace data_structures
 
         private void insert(K key, V value)
         {
-            int hashCode = getStringHash(key.ToString()) & 0x7fffffff % entries.Length;
+            int hashCode = getHashCode(key);
             if (entries[hashCode] == null)
                 entries[hashCode] = new Entry(key, value);
             else
@@ -56,9 +56,15 @@ namespace data_structures
             entryCount++;
         }
 
+        private int getHashCode(K key)
+        {
+            //return getStringHash(key.ToString()) & 0x7fffffff % entries.Length;
+            return key.GetHashCode() & 0x7fffffff % entries.Length;
+        }
+
         public V get(K key)
         {
-            int hashCode = getStringHash(key.ToString()) & 0x7fffffff % entries.Length;
+            int hashCode = getHashCode(key);
             for (Entry e = entries[hashCode]; e != null; e = e.Next)
             {
                 if (key.Equals(e.Key))
