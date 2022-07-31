@@ -11,7 +11,7 @@ namespace data_structures
 
         public LinkedList()
         {
-            enumerator = new MyEnumerator(firstItem);            
+            enumerator = new MyEnumerator();            
         }
         public int Count
         {
@@ -25,6 +25,10 @@ namespace data_structures
 
         class Node
         {
+            public Node()
+            {
+                
+            }
             public Node(T item)
             {
                 this.Item = item;
@@ -35,11 +39,13 @@ namespace data_structures
 
         class MyEnumerator : IEnumerator<T>
         {
-            public MyEnumerator(Node currentNode)
+            public MyEnumerator()
             {
-                this.CurrentNode = currentNode;
+                CurrentNode = new Node();
             }
-            public T Current { get; set; }
+            public T Current {
+                get { return CurrentNode.Item; } 
+            }
             public Node CurrentNode { get; set; }
 
             object IEnumerator.Current => throw new NotImplementedException();
@@ -69,7 +75,6 @@ namespace data_structures
             if (firstItem == null)
             {
                 firstItem = new Node(item);
-                enumerator = new MyEnumerator(firstItem);
             }
             else
             {
@@ -77,6 +82,7 @@ namespace data_structures
                 newNode.Next = firstItem;
                 firstItem = newNode;
             }
+            enumerator.CurrentNode.Next = firstItem;
         }
 
         private int count()
