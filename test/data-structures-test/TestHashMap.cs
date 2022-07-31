@@ -91,6 +91,25 @@ namespace data_structures
         }
 
         [Fact]
+        public void PutFiveItemsAndGetThemAllIntegerKeyAndStringValue()
+        {
+            // Given
+            HashMap<int, string> hm = new HashMap<int, string>();
+            hm.put(1, "one");
+            hm.put(2, "two");
+            hm.put(3, "three");
+            hm.put(4, "four");
+            hm.put(5, "five");
+
+            Assert.Equal("one", hm.get(1));
+            Assert.Equal("two", hm.get(2));
+            Assert.Equal("three", hm.get(3));
+            Assert.Equal("four", hm.get(4));
+            Assert.Equal("five", hm.get(5));
+        }
+
+
+        [Fact]
         public void EntryCountShouldBeFiveAfterAddingFiveItems()
         {
             // Given
