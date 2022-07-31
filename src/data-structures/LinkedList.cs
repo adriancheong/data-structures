@@ -65,7 +65,12 @@ namespace data_structures
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            for (Node i = firstItem; i != null; i = i.Next)
+            {
+                if (item.Equals(firstItem))
+                    return true;
+            }
+            return false;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
