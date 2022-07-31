@@ -58,6 +58,21 @@ namespace data_structures
         }
 
         [Fact]
+        public void PutThreeItemsAndGetThemAll()
+        {
+            // Given
+            HashMap<string, int> hm = new HashMap<string, int>();
+            hm.put("one", 1);
+            hm.put("two", 2);
+            hm.put("three", 3);
+ 
+            Assert.Equal(1, hm.get("one"));
+            Assert.Equal(2, hm.get("two"));
+            Assert.Equal(3, hm.get("three"));
+        }
+
+
+        [Fact]
         public void PutFiveItemsAndGetThemAll()
         {
             // Given
