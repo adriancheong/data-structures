@@ -6,12 +6,10 @@ namespace data_structures
     public class HashMap<K,V>
     {
         class Entry{
-            private K key;
-            private V value;
             public Entry(K key, V value)
             {
-                this.key = key;
-                this.value = value;
+                this.Key = key;
+                this.Value = value;
             }
             public K Key { get; set; }
 
@@ -58,6 +56,7 @@ namespace data_structures
         {
             Entry[] oldEntries = entries;
             entries = new Entry[entries.Length * 2];
+            entryCount = 0;
             for (int i = 0; i < oldEntries.Length; i++)
             {
                 if (oldEntries[i] != null)
