@@ -80,7 +80,26 @@ namespace data_structures
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            Node prev = null;
+
+            for (Node i = firstItem; i != null; i = i.Next)
+            {
+                if (item.Equals(i.Item))
+                {
+                    if (i == firstItem)
+                    {
+                        firstItem = i.Next;
+                        return true;
+                    }
+                    else
+                    {
+                        prev.Next = i.Next;
+                        return true;
+                    }
+                }
+                prev = i;
+            }
+            return false;
         }
 
         public IEnumerator<T> GetEnumerator()
