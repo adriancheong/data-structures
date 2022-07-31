@@ -74,5 +74,19 @@ namespace data_structures
             Assert.Equal(4, hm.get("four"));
             Assert.Equal(5, hm.get("five"));
         }
+
+        [Fact]
+        public void EntryCountShouldBeFiveAfterAddingFiveItems()
+        {
+            // Given
+            HashMap<string, int> hm = new HashMap<string, int>();
+            hm.put("one", 1);
+            hm.put("two", 2);
+            hm.put("three", 3);
+            hm.put("four", 4);
+            hm.put("five", 5);
+
+            Assert.Equal(5, hm.length());
+        }
     }
 }
