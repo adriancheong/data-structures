@@ -54,5 +54,26 @@ namespace data_structures
             Assert.Equal(0, ll.Count);
         }
 
+        [Fact]
+        public void TestContainsShouldWork()
+        {
+            LinkedList<string> ll = new LinkedList<string>();
+            ll.Add("one");
+            ll.Add("two");
+            ll.Add("three");
+            ll.Add("four");
+            ll.Add("five");
+
+            Assert.True(ll.Contains("one"));
+            Assert.True(ll.Contains("two"));
+            Assert.True(ll.Contains("three"));
+            Assert.True(ll.Contains("four"));
+            Assert.True(ll.Contains("five"));
+
+            Assert.False(ll.Contains("zero"));
+            Assert.False(ll.Contains("six"));
+        }
+
+
     }
 }
