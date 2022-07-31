@@ -9,35 +9,50 @@ namespace data_structures
         public void LinkedListCanAddItems()
         {
             LinkedList<string> ll = new LinkedList<string>();
-            ll.AddFirst("one");
-            ll.AddFirst("two");
-            ll.AddFirst("three");
-            ll.AddFirst("four");
-            ll.AddFirst("five");
+            ll.Add("one");
+            ll.Add("two");
+            ll.Add("three");
+            ll.Add("four");
+            ll.Add("five");
         }
 
         [Fact]
         public void LinkedListCountIsCorrectAfterAdding()
         {
             LinkedList<string> ll = new LinkedList<string>();
-            ll.AddFirst("one");
-            ll.AddFirst("two");
-            ll.AddFirst("three");
-            ll.AddFirst("four");
-            ll.AddFirst("five");
+            ll.Add("one");
+            ll.Add("two");
+            ll.Add("three");
+            ll.Add("four");
+            ll.Add("five");
 
-            Assert.Equal(5, ll.count());
+            Assert.Equal(5, ll.Count);
         }
 
-                [Fact]
+        [Fact]
         public void LinkedListCountIsCorrectBeforeAndAfterAddingOneItem()
         {
             LinkedList<string> ll = new LinkedList<string>();
-            Assert.Equal(0, ll.count());
-            ll.AddFirst("one");
-            Assert.Equal(1, ll.count());
+            Assert.Equal(0, ll.Count);
+            ll.Add("one");
+            Assert.Equal(1, ll.Count);
         }
 
+        [Fact]
+        public void ClearLinkedListShouldWork()
+        {
+            LinkedList<string> ll = new LinkedList<string>();
+            ll.Add("one");
+            ll.Add("two");
+            ll.Add("three");
+            ll.Add("four");
+            ll.Add("five");
+            Assert.Equal(5, ll.Count);
+
+            ll.Clear();
+
+            Assert.Equal(0, ll.Count);
+        }
 
     }
 }

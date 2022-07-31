@@ -1,10 +1,23 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace data_structures
 {
-    public class LinkedList<T>
+    public class LinkedList<T> : ICollection<T>
     {
         Node<T> firstItem;
+
+        public int Count
+        {
+            get
+            {
+                return count();
+            }
+        }
+
+        public bool IsReadOnly => throw new NotImplementedException();
+
         class Node<T>
         {
             public Node(T item)
@@ -15,7 +28,7 @@ namespace data_structures
             public Node<T> Next { get; set; }
         }
 
-        public void AddFirst(T item)
+        public void Add(T item)
         {
             if (firstItem == null)
                 firstItem = new Node<T>(item);
@@ -25,11 +38,9 @@ namespace data_structures
                 newNode.Next = firstItem;
                 firstItem = newNode;
             }
-
-
         }
 
-        public int count()
+        private int count()
         {
             int count = 0;
             var iter = firstItem;
@@ -45,6 +56,36 @@ namespace data_structures
             // }
             
             return count;
+        }
+
+        public void Clear()
+        {
+            firstItem = null;
+        }
+
+        public bool Contains(T item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Remove(T item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }
