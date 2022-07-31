@@ -74,6 +74,30 @@ namespace data_structures
             Assert.False(ll.Contains("six"));
         }
 
+        [Fact]
+        public void TestRemoveShouldWork()
+        {
+            LinkedList<string> ll = new LinkedList<string>();
+            ll.Add("one");
+            ll.Add("two");
+            ll.Add("three");
+            ll.Add("four");
+            ll.Add("five");
+
+            Assert.Equal(5, ll.Count);
+
+            ll.Remove("three");
+
+            Assert.Equal(4, ll.Count);
+            Assert.True(ll.Contains("one"));
+            Assert.True(ll.Contains("two"));
+            Assert.False(ll.Contains("three"));
+            Assert.True(ll.Contains("four"));
+            Assert.True(ll.Contains("five"));
+
+        }
+
+
 
     }
 }
